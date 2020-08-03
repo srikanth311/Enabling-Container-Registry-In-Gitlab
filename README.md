@@ -113,10 +113,10 @@ xx.xx.xx.xx  ec2-xx-xx-xx-xx.compute-1.amazonaws.com  registry.srikanth.com
 > Make sure you are able to ping the URL.
 > ping registry.srikanth.com
 
-PING ec2-xx-xx-xx-xx.compute-1.amazonaws.com (54.226.151.150) 56(84) bytes of data.
-64 bytes from ec2-xx-xx-xx-xx.compute-1.amazonaws.com (54.226.151.150): icmp_seq=1 ttl=63 time=0.705 ms
-64 bytes from ec2-xx-xx-xx-xx.compute-1.amazonaws.com (54.226.151.150): icmp_seq=2 ttl=63 time=0.553 ms
-64 bytes from ec2-xx-xx-xx-xx.compute-1.amazonaws.com (54.226.151.150): icmp_seq=3 ttl=63 time=0.399 ms
+PING ec2-xx-xx-xx-xx.compute-1.amazonaws.com (xx.xx.xx.xx) 56(84) bytes of data.
+64 bytes from ec2-xx-xx-xx-xx.compute-1.amazonaws.com (xx.xx.xx.xx): icmp_seq=1 ttl=63 time=0.705 ms
+64 bytes from ec2-xx-xx-xx-xx.compute-1.amazonaws.com (xx.xx.xx.xx): icmp_seq=2 ttl=63 time=0.553 ms
+64 bytes from ec2-xx-xx-xx-xx.compute-1.amazonaws.com (xx.xx.xx.xx): icmp_seq=3 ttl=63 time=0.399 ms
 ^C
 --- ec2-xx-xx-xx-xx.compute-1.amazonaws.com ping statistics ---
 3 packets transmitted, 3 received, 0% packet loss, time 1999ms
