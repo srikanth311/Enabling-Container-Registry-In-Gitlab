@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c43d6624-cbc2-44f2-a037-a30956a6ab4d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Images/runner-result-edit.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
@@ -27,9 +28,15 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Images" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Images" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -56,7 +63,9 @@
       <workItem from="1596469047067" duration="1279000" />
       <workItem from="1596481961536" duration="388000" />
       <workItem from="1596483661012" duration="2013000" />
-      <workItem from="1596556481882" duration="3214000" />
+      <workItem from="1596556481882" duration="3297000" />
+      <workItem from="1596565478554" duration="13000" />
+      <workItem from="1596565499809" duration="408000" />
     </task>
     <task id="LOCAL-00001" summary="latest">
       <created>1596483674566</created>
@@ -72,7 +81,14 @@
       <option name="project" value="LOCAL" />
       <updated>1596563150731</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="latest">
+      <created>1596563199406</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1596563199406</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

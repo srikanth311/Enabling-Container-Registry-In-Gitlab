@@ -293,7 +293,15 @@ Finally, you will see the above runner activated in the "Runners" page under CI/
 ```
 ![Alt text](Images/runner-result.png?raw=true "Runners Result")
 
-
+### Step 13: Running the jobs which are untagged.
+```
+Note: By default, if the jobs are untagged, they will not run, You need to update a setting in the "Runner" as below.
+```
+```
+-> Click on the edit button, next to Runner as shown in the below screen.
+-> Select the check box next to "Run Untagged jobs" setting as shown in the below image.
+```
+![Alt text](Images/runner-edit.png?raw=true "Runners edit")
 
 
 
