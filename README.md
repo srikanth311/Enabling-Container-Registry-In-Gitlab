@@ -249,7 +249,7 @@ Login Succeeded
 
 ```
 
-### Step 11: Installing and setting up Gitlab Runner.
+### Step 12: Installing and setting up Gitlab Runner.
 #### We will also setup the Gitlab runner on the same EC2 instance.
 ```
 > cd
