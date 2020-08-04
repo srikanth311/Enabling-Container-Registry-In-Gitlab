@@ -249,6 +249,49 @@ Login Succeeded
 
 ```
 
+### Step 11: Installing and setting up Gitlab Runner.
+#### We will also setup the Gitlab runner on the same EC2 instance.
+```
+> cd
+> mkdir gitlab-runner
+> cd gitlab-runner
+```
+```
+> curl -LJO https://gitlab-runner-downloads.s3.amazonaws.com/latest/deb/gitlab-runner_amd64.deb
+> sudo dpkg -i gitlab-runner_amd64.deb
+> sudo gitlab-runner status
+```
+
+```
+Note: Get the gitlab coordinator url and token from the gitlab CI/CD page.
+-> Login to Gitlab UI, go to CI/CD settings page, click on "Expand" button under "Runners" section
+-> In this page, you can see URL for runner setup and token for registration. Copy those values.
+```
+![Alt text](Images/cicd.png?raw=true "CI/CD settings")
+![Alt text](Images/runner.png?raw=true "Runners")
+
+```
+> sudo gitlab-runner register
+
+> Please enter the gitlab-ci coordinator URL (e.g. https://gitlab.com/):
+**** http://xx.xx.xx.xx/
+> Please enter the gitlab-ci token for this runner:
+**** maskedtempasdklsadnqwencascn
+> Please enter the gitlab-ci description for this runner:
+**** [ip-xx-xx-xx-xx]: my-gitlab-runner
+> Please enter the gitlab-ci tags for this runner (comma separated):
+**** my-gitlab-runner, srikanth
+> Registering runner... succeeded                     runner=a1uJroGA
+> Please enter the executor: docker-ssh+machine, custom, parallels, shell, virtualbox, docker+machine, docker, docker-ssh, ssh, kubernetes:
+**** docker
+> Please enter the default Docker image (e.g. ruby:2.6):
+**** alpine:latest
+Runner registered successfully. Feel free to start it, but if it's running already the config should be automatically reloaded!
+```
+```
+Finally, you will see the above runner activated in the "Runners" page under CI/CD settings as below.
+```
+![Alt text](Images/runner-result.png?raw=true "Runners Result")
 
 
 
