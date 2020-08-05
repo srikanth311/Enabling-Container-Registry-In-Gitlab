@@ -27,7 +27,7 @@
 > cd /etc/gitlab/
 > sudo chmod -R 755 /etc/gitlab/trusted-certs/
 > cd trusted-certs/
-> openssl req -newkey rsa:4096 -nodes -sha256 -keyout /etc/gitlab/trusted-certs/registry.srikanth.com.key -x509 -days 365 -out /etc/gitlab/trusted-certs/registry.srikanth.com.crt
+> sudo openssl req -newkey rsa:4096 -nodes -sha256 -keyout /etc/gitlab/trusted-certs/registry.srikanth.com.key -x509 -days 365 -out /etc/gitlab/trusted-certs/registry.srikanth.com.crt
 
 ```
 ```
@@ -220,6 +220,9 @@ Once you click on the "Container registry" you will see the below page.
 > sudo cp -r -p registry.srikanth.com.crt ca.crt
 > sudo chown -R 755 /etc/docker/certs.d/
 
+> sudo cp -r -p registry.srikanth.com.crt /usr/local/share/ca-certificates/
+> sudo update-ca-certificates
+> sudo service docker restart
 ```
 
 ```
@@ -233,7 +236,7 @@ Once you click on the "Container registry" you will see the below page.
 
 > docker login registry.srikanth.com
 
-It will prompt you for the username and password for the gitlab. Provide them.
+It will prompt you for the username and password for the gitlab. Provide the same username and password that is used to login to the github UI.
 
 Ouput:
 ======
