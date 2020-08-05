@@ -254,6 +254,7 @@ Login Succeeded
 
 ### Step 12: Installing and setting up Gitlab Runner.
 #### We will also setup the Gitlab runner on the same EC2 instance.
+
 ```
 > cd
 > mkdir gitlab-runner
@@ -291,6 +292,46 @@ Note: Get the gitlab coordinator url and token from the gitlab CI/CD page.
 **** alpine:latest
 Runner registered successfully. Feel free to start it, but if it's running already the config should be automatically reloaded!
 ```
+
+#### Next copy the same cert file that was created above using openssl in to gitlab-runner config directory.
+```
+> cd /etc/gitlab-runner/
+> mkdir -p config/certs
+> sudo cp -r -p /etc/gitlab/trusted-certs/registry.srikanth.com.crt .
+> sudo cp -r -p registry.srikanth.com.crt ca.crt
+> sudo rm registry.srikanth.com.crt
+> mv ca.crt config/certs/
+
+> pwd
+/etc/gitlab-runner
+
+> ls -ltra
+total 16
+drwxr-xr-x 96 root root 4096 Aug  5 02:32 ..
+-rw-------  1 root root  530 Aug  5 02:34 config.toml
+drwxr-xr-x  3 root root 4096 Aug  5 05:01 config
+drwx------  3 root root 4096 Aug  5 05:03 .
+```
+
+```
+#### Update the config.toml file.
+> vi config.toml
+
+> check for "volumes" under [runners.docker] section, and update with the location of the ca.crt file that we created.
+
+> Map "/etc/gitlab-runner/config/certs/ca.crt" on the local gitlab runner host to docker container path.
+ 
+> volumes = ["/cache", "/var/run/docker.sock:/var/run/docker.sock", "/etc/gitlab-runner/config/certs/ca.crt:/etc/gitlab-runner/config/certs/ca.crt"]
+
+```
+#### Restart the gitlab runner service.
+```
+> sudo gitlab-runner status
+> sudo gitlab-runner stop
+> sudo gitlab-runner start
+> sudo gitlab-runner status
+```
+
 ```
 Finally, you will see the above runner activated in the "Runners" page under CI/CD settings as below.
 ```
@@ -305,6 +346,52 @@ Note: By default, if the jobs are untagged, they will not run, You need to updat
 -> Select the check box next to "Run Untagged jobs" setting as shown in the below image.
 ```
 ![Alt text](Images/runner-edit.png?raw=true "Runners edit")
+
+### Step 14: Sample .gitlab-ci.yml file that works with the above configuration.
+```
+image: docker:18-git
+
+variables:
+
+services:
+  - docker:18-dind
+
+before_script:
+  # Add this entry in the /etc/hosts file. This is needed for name resolution, otherwise it will use the "nameserver" ip address defined in the /etc/resolv.conf file and it will fail.
+  # This entry needs to be the same entry that you added in your docker host's /etc/hosts/ file.
+  # You can check step 8: in this https://github.com/srikanth311/Enabling-Container-Registry-In-Gitlab
+  - echo '100.25.45.171	ec2-100-25-45-171.compute-1.amazonaws.com	registry.srikanth.com' >> /etc/hosts
+  - cat /etc/hosts
+  # In your gutlab-runner's "config.toml" file, make sure you map the voulmes from the docker host to docker service container.
+  # On my gitlab runner host, I have this.
+  # cat /etc/gitlab-runner/config.toml | grep volumes
+  #    volumes = ["/cache", "/var/run/docker.sock:/var/run/docker.sock", "/etc/gitlab-runner/config/certs/ca.crt:/etc/gitlab-runner/config/certs/ca.crt"]
+  # On my gitlab runner host, i have my ca.crt file in this location: /etc/gitlab-runner/config/certs/ca.crt
+  # From this location, i am copying it to "/etc/gitlab-runner/config/certs/ca.crt" on the docker service container.
+  # The ls command just checks if the directory exists in the docker container.
+  - ls /etc/gitlab-runner
+  # The below "cp" command copies the file from "/etc/gitlab-runner/config/certs/ca.crt" to "/usr/local/share/ca-certificates/ca.crt". This "/usr/local/share/ca-certificates/ca.crt" location
+  # is the default location to store the certs.
+  - cp /etc/gitlab-runner/config/certs/ca.crt /usr/local/share/ca-certificates/ca.crt
+  # Checking again if the file gets copied successfully or not.
+  - ls /usr/local/share/ca-certificates/ca.crt
+
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  services:
+    - name: docker:dind
+  script:
+    - update-ca-certificates
+    - echo "Certificates are updated."
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build -t registry.srikanth.com/root/simple-node-app .
+    - docker push registry.srikanth.com/root/simple-node-app
+
+``` 
 
 
 
