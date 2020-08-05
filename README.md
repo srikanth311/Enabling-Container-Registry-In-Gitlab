@@ -360,7 +360,7 @@ before_script:
   # Add this entry in the /etc/hosts file. This is needed for name resolution, otherwise it will use the "nameserver" ip address defined in the /etc/resolv.conf file and it will fail.
   # This entry needs to be the same entry that you added in your docker host's /etc/hosts/ file.
   # You can check step 8: in this https://github.com/srikanth311/Enabling-Container-Registry-In-Gitlab
-  - echo '100.25.45.171	ec2-100-25-45-171.compute-1.amazonaws.com	registry.srikanth.com' >> /etc/hosts
+  - echo 'xx.xx.xx.xx	ec2-xx-xx-xx-xx.compute-1.amazonaws.com	registry.srikanth.com' >> /etc/hosts
   - cat /etc/hosts
   # In your gutlab-runner's "config.toml" file, make sure you map the voulmes from the docker host to docker service container.
   # On my gitlab runner host, I have this.
