@@ -72,7 +72,7 @@ chmod 600 /etc/gitlab/trusted-certs/registry.srikanth.com.key
 ### Step 7: Update the gitlab configuration file.
 ```
 > cd /etc/gitlab
-> vi /etc/gitlab/gitlab.rc (To update the configurations)
+> vi /etc/gitlab/gitlab.rb (To update the configurations)
 ```
 ```
 1) External URL: this will be your ec2 instance's fqdn. Change it to the IP address.
