@@ -65,8 +65,8 @@ Email Address []:
 ```
 Change the permissions of the files that were created above.
 
-chmod 600 /etc/gitlab/trusted-certs/registry.srikanth.com.crt
-chmod 600 /etc/gitlab/trusted-certs/registry.srikanth.com.key
+sudo chmod 600 /etc/gitlab/trusted-certs/registry.srikanth.com.crt
+sudo chmod 600 /etc/gitlab/trusted-certs/registry.srikanth.com.key
 ```
 
 ### Step 7: Update the gitlab configuration file.
@@ -234,7 +234,7 @@ Once you click on the "Container registry" you will see the below page.
 ```
 4) Connect to gitlab registry from docker.
 
-> docker login registry.srikanth.com
+> sudo docker login registry.srikanth.com
 
 It will prompt you for the username and password for the gitlab. Provide the same username and password that is used to login to the github UI.
 
